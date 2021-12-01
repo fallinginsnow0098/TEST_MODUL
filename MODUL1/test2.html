@@ -5,6 +5,25 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    function search( index , arr) {
+        for ( let i = 0; i < arr.length; i++) {
+            if (arr[i] === index ){
+                return i ;
+            }
+        }
+        return false ;
+    }
 
+    let array = [1, 2, 3, 4, 5]
+    let inputIndex = parseInt(prompt("Nhập số nguyên cần check:"))
+    let checkNum = search(inputIndex, array)
+
+    if (checkNum === false ) {
+        console.log("Số nguyên vừa nhập không nằm trong mảng")
+    } else {
+        console.log("Số nguyên vừa nhập nằm ở vị trí thứ: " + checkNum + "trong mảng.")
+    }
+</script>
 </body>
 </html>

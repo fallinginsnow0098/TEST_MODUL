@@ -5,6 +5,41 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+class Animal {
+    name
+    weight
+    constructor(name, weight) {
+        this.name = name
+        this.weight = weight
+    }
+    getName() {
+        return this.name
+    }
+    setName(name) {
+        this.name = name
+    }
+    getWeight() {
+        return this.weight
+    }
+    setWeight (weight) {
+        this.weight
+    }
+    toString() {
+        return "Tên: " + this.name + ", Cân nặng: " + this.weight
+    }
+}
 
+let objAnimal = new Animal() ;
+    objAnimal.setName("Elephant");
+    objAnimal.setWeight("45.6");
+
+    console.log(objAnimal.toString());
+
+let objAnimal2 = new Animal("Fish", 1 );
+    objAnimal2.setName("Mouse");
+
+    console.log(objAnimal2.getName());
+</script>
 </body>
 </html>
