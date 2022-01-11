@@ -29,18 +29,18 @@ public class RunContactManager {
                 int choice = Integer.parseInt(scanner.nextLine());
                 if (choice < 1 || choice > 8) {
                     System.out.println();
-                    System.out.println("⛔ Lựa chọn không tồn tại, mời bạn nhập lại !!!");
+                    System.out.println("Lựa chọn không tồn tại, mời bạn nhập lại !!!");
                     System.out.println("--------------------");
                 }
                 switch (choice) {
                     case 1:
-                        contactManager.displayAllContact();
+                        contactManager.displayAll();
                         break;
                     case 2:
                         contactManager.addContact();
                         break;
                     case 3:
-                        System.out.println("▹ Nhập số điện thoại cần sửa (+84)-123456789:");
+                        System.out.println("Nhập số điện thoại cần sửa (+84)-123456789:");
                         String phoneEdit = scanner.nextLine();
                         if (phoneEdit.equals("")) {
                             menuContact();
@@ -49,28 +49,29 @@ public class RunContactManager {
                         }
                         break;
                     case 4:
-                        System.out.println("▹ Nhập số điện thoại cần xóa (+84)-123456789:");
+                        System.out.println("Nhập số điện thoại cần xóa (+84)-123456789:");
                         String deletePhoneNumber = scanner.nextLine();
                         if (deletePhoneNumber.equals("")) {
                             menuContact();
                         } else {
-                            contactManager.deleteContactByPhoneNumber(deletePhoneNumber);
+                            contactManager.deleteContact(deletePhoneNumber);
                         }
                         break;
                     case 5:
-                        System.out.println("▹ Nhập từ khóa:");
+                        System.out.println("Nhập từ khóa:");
                         String keyword = scanner.nextLine();
-                        contactManager.searchByKeyword(keyword);
+                        contactManager.searchContactByNameOrPhone(keyword);
                         break;
                     case 6:
                         System.out.println("Danh sách danh bạ: ");
-                        ArrayList<Contact> contactArrayList = contactManager.readFileCSV(ContactManager.PATH_CONTACT);
-                        contactArrayList.forEach(System.out::println);
+                        ArrayList<Contact> contactArrayList = contactManager.readFile(ContactManager.PATH_NAME);
+                        for (Contact c : contactArrayList) {
+                            System.out.println(c);
+                        }
                         System.out.println();
                         break;
                     case 7:
-                        contactManager.writeFileCSV(contactManager.getContacts(), ContactManager.PATH_CONTACT);
-                        System.out.println("Ghi dữ liệu ra file CSV thành công! \n");
+                        contactManager.writeFile(contactManager.getContactList(), ContactManager.PATH_NAME);
                         break;
                     case 8:
                         System.exit(8);
