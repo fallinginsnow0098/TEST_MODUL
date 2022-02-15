@@ -87,9 +87,10 @@ public class ProductServlet extends HttpServlet {
                 index = i;
             }
         }
-        productIService.update(new Product(name, price, color, description, quantity), categoryId);
+        boolean checkUpdate = productIService.update(new Product(name, price, color, description, quantity), categoryId);
         products = productIService.getAll();
         request.setAttribute("products", products);
+        request.setAttribute( "checkUpdate", checkUpdate);
         request.getRequestDispatcher("/view/home.jsp");
     }
 

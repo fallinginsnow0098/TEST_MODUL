@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
     <title>MODUL 3</title>
@@ -9,6 +10,51 @@
     <link rel="stylesheet" href="../common/css.css">
   </head>
   <body>
+  <div class="container">
+    <h1>All product</h1>
+  </div>
+  <div>
+    <button class="btn" type="button" onclick="">
+      <a href="/home?action=showFormAdd" style="color: lightseagreen"></a>
+    </button>
+  </div>
+
+  <div class="container col-md-9">
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Color</td>
+        <td>Description</td>
+        <td>Category</td>
+        <td colspan="2">Action</td>
+      </tr>
+      <tr>
+        <c:forEach var="product" items="${requestScope.products}">
+          <td>${product.id}</td>
+          <td>${product.name}</td>
+          <td>${product.price}</td>
+          <td>${product.quantity}</td>
+          <td>${product.color}</td>
+          <td>${product.description}</td>
+          <td>${product.category}</td>
+          <td>
+            <button class="btn btn-info" type="button" onclick="">
+              <a href="/home?action=delete&id=${product.id}" style="color: red"></a>
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-info" type="button" onclick="">
+              <a href="/home?action=delete&id=${product.id}" style="color: red"></a>
+            </button>
+          </td>
+        </c:forEach>
+      </tr>
+    </table>
+  </div>
+
 
   </body>
 </html>
