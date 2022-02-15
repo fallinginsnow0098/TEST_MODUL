@@ -43,6 +43,7 @@ public class RunContactManager {
                         System.out.println("Nhập số điện thoại cần sửa (+84)-123456789:");
                         String phoneEdit = scanner.nextLine();
                         if (phoneEdit.equals("")) {
+                            System.out.println("Cần nhập vào đúng số điện thoại trong danh bạ");
                             menuContact();
                         } else {
                             contactManager.updateContact(phoneEdit);
@@ -52,6 +53,7 @@ public class RunContactManager {
                         System.out.println("Nhập số điện thoại cần xóa (+84)-123456789:");
                         String deletePhoneNumber = scanner.nextLine();
                         if (deletePhoneNumber.equals("")) {
+                            System.out.println("Cần nhập vào đúng số điện thoại trong danh bạ");
                             menuContact();
                         } else {
                             contactManager.deleteContact(deletePhoneNumber);
@@ -60,7 +62,12 @@ public class RunContactManager {
                     case 5:
                         System.out.println("Nhập từ khóa:");
                         String keyword = scanner.nextLine();
-                        contactManager.searchContactByNameOrPhone(keyword);
+                        if (keyword.equals("")){
+                            System.out.println("Nhập vào từ khóa để tìm số điện thoại");
+                            menuContact();
+                        } else {
+                            contactManager.searchByKeyWord(keyword);
+                        }
                         break;
                     case 6:
                         System.out.println("Danh sách danh bạ: ");

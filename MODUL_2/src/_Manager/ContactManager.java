@@ -59,21 +59,12 @@ public class ContactManager {
         LocalDate dateOfBirth = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-LL-yyyy"));
         String email = enterEmail();
         if (getGender(gender).equals("")) {
-            System.out.println("Nhập sai lựa chọn! Vui lòng nhập lại");
-            System.out.println("-----");
+            System.out.println("Nhập sai lựa chọn! Vui lòng nhập lại!\n");
             return;
-        }
-        for (Contact phone : contactList) {
-            if (phone.getPhoneNumber().equals(phoneNumber)) {
-                System.out.println("Trùng số điện thoại! Vui lòng nhập lại");
-                System.out.println("-----");
-                return;
-            }
         }
         Contact contact = new Contact(phoneNumber, group, name, getGender(gender), address, dateOfBirth, email);
         contactList.add(contact);
-        System.out.println("Thêm " + phoneNumber + " vào danh bạ thành công !");
-        System.out.println("-----");
+        System.out.println("Thêm " + phoneNumber + " vào danh bạ thành công !\n");
     }
 
     public void updateContact(String phoneNumber) {
@@ -102,11 +93,9 @@ public class ContactManager {
             editContact.setBirthday(dateOfBirth);
             editContact.setEmail(enterEmail());
             contactList.set(index,editContact);
-            System.out.println("Sửa " + phoneNumber + " thành công !");
-            System.out.println("-----");
+            System.out.println("Sửa " + phoneNumber + " thành công !\n");
         } else {
-            System.out.println("Không tìm được danh bạ với số điện thoại trên !");
-            System.out.println("-----");
+            System.out.println("Không tìm được danh bạ với số điện thoại trên !\n");
         }
     }
 
@@ -124,29 +113,27 @@ public class ContactManager {
             String confirm = scanner.next();
             if (confirm.equalsIgnoreCase("y")) {
                 contactList.remove(deleteContact);
-                System.out.println("Xóa " + phoneNumber + " thành công !");
-                System.out.println("-----");
+                System.out.println("Xóa " + phoneNumber + " thành công !\n");
+
             }
         } else {
-            System.out.println("Không tìm thấy danh bạ với số điện thoại trên !");
-            System.out.println("-----");
+            System.out.println("Không tìm thấy danh bạ với số điện thoại trên !\n");
         }
     }
 
-    public void searchContactByNameOrPhone(String keyword) {
+    public void searchByKeyWord(String keyword) {
         ArrayList<Contact> contacts = new ArrayList<>();
         for (Contact contact : contactList) {
-            if (validate.validateSearchByKeyword(keyword, contact.getPhoneNumber()) || validate.validateSearchByKeyword(keyword, contact.getName())) {
+            if (validate.validateSearchByKeyword(keyword, contact.getPhoneNumber())) {
                 contacts.add(contact);
             }
         }
         if (contacts.isEmpty()) {
-            System.out.println("Không tìm thấy danh bạ với từ khóa trên !");
-            System.out.println("-----");
+            System.out.println("Không tìm thấy danh bạ với từ khóa trên !\n");
         } else {
-            System.out.println("Danh bạ cần tìm:");
+            System.out.println("Thông tin cần tìm theo từ khóa trên: ");
             contacts.forEach(System.out::println);
-            System.out.println("-----");
+
         }
     }
 
@@ -163,7 +150,7 @@ public class ContactManager {
     public String enterPhoneNumber() {
         String phoneNumber;
         while (true) {
-            System.out.println("Nhập số điện thoại: ((+84)-123456789)");
+            System.out.println("Nhập số điện thoại: ");
             String phone = scanner.nextLine();
             if (!validate.validatePhone(phone)) {
                 System.out.println("Số điện thoại không hợp lệ!");
@@ -179,7 +166,7 @@ public class ContactManager {
     private String enterEmail() {
         String email;
         while (true) {
-            System.out.println("Nhập email: (abc.def@yahoo.com / .vn)");
+            System.out.println("Nhập email: ");
             String inputEmail = scanner.nextLine();
             if (!validate.validateEmail(inputEmail)) {
                 System.out.println("Email không hợp lệ!");
