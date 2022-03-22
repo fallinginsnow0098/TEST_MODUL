@@ -1,6 +1,7 @@
 package backend.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "City")
@@ -8,16 +9,31 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private double area;
+    @NotNull
     private double population;
+    @NotNull
     private double gdp;
+    @NotNull
     private String description;
 
     @ManyToOne
     private Country country;
 
     public City() {
+    }
+
+    public City(Long id, String name, double area, double population, double gdp, String description, Country country) {
+        this.id = id;
+        this.name = name;
+        this.area = area;
+        this.population = population;
+        this.gdp = gdp;
+        this.description = description;
+        this.country = country;
     }
 
     public Long getId() {
